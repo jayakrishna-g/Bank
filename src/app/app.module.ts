@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavComponent } from './nav/nav.component';
 import { CustomersearchComponent } from './customersearch/customersearch.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +17,7 @@ import { CustomersearchComponent } from './customersearch/customersearch.compone
   imports: [
     MDBBootstrapModule.forRoot(),
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

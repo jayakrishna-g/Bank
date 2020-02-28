@@ -1,7 +1,8 @@
 import { MdbTablePaginationComponent, MdbTableDirective } from 'angular-bootstrap-md';
 
 import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-
+import { DataService } from '../data.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-customersearch',
   templateUrl: './customersearch.component.html',
@@ -13,18 +14,13 @@ export class CustomersearchComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements: any = [];
   previous: any = [];
-  headElements = ['ID', 'First', 'Last', 'Handle'];
-
-  constructor(private cdRef: ChangeDetectorRef) { }
-
+  headElements = ['ID', 'FirstName', 'AccountNumber', 'AccountType'];
+  a: any;
+  constructor(private cdRef: ChangeDetectorRef,private data: DataService,private http: HttpClient) { }
   ngOnInit() {
-    for (let i = 1; i <= 15; i++) {
-      this.elements.push({id: i.toString(), first: 'User ' + i, last: 'Name ' + i, handle: 'Handle ' + i});
-    }
-
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+     this.data.getdata().subscribe( (d) => {
+       console.log(d);
+    });
   }
 
   ngAfterViewInit() {
