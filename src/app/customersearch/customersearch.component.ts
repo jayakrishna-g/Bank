@@ -46,9 +46,9 @@ import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
 
 export interface UserData {
-  id: string;
   name: string;
   accountnumber: string;
+  contactnumber: string;
   accounttype: string;
 }
 
@@ -62,7 +62,7 @@ export interface UserData {
     styleUrls: ['./customersearch.component.css']
  })
 export class CustomersearchComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'accountnumber', 'accounttype'];
+  displayedColumns: string[] = ['name', 'accountnumber', 'contactnumber', 'accounttype'];
   dataSource: MatTableDataSource<UserData>;
   elements : any = [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -75,7 +75,8 @@ export class CustomersearchComponent implements OnInit {
       console.log(value);
       this.elements.push({Name : value.firstname,
         AccountNumber : value.accountnumber,
-      AccountType : value.Savings
+      AccountType : value.Savings,
+      ContactNumber : value.phone
     })
   });
     
